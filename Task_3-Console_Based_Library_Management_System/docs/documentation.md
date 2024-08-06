@@ -53,7 +53,7 @@ To run the project, simply execute the main Go file:
 ## Some Example Usages
 
 ### Add Book
-`
+```
 Welcome!, follow the instructions to continue
 Press 1: Add a new Book
 Press 2: Remove an existing Book
@@ -67,9 +67,9 @@ Enter Book ID: 1
 Enter Book Title: The Enemy
 Enter Book Author: David Aspinov
 Book Added Successfully
-`
+```
 ## List Available Books
-`
+```
 Welcome!, follow the instructions to continue
 Press 1: Add a new Book
 Press 2: Remove an existing Book
@@ -81,4 +81,4 @@ Press 0: Abort
 Enter an instruction: 5
 Book ID: 1 | Book Title: The Enemy | Book Author: David Aspinov | Book Status: Available
 Book ID: 2 | Book Title: Feker Eske Mekaber | Book Author: Hadis Alemayehu | Book Status: Available
-`
+```
