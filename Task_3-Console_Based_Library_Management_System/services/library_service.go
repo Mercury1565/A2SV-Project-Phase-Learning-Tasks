@@ -19,6 +19,8 @@ type Library struct {
 	Members map[int]models.Member // [member_id] -> Member
 }
 
+// NewLibrary creates a new instance of the Library struct.
+// It initializes the Books and Members maps and returns a pointer to the Library.
 func NewLibrary() *Library {
 	return &Library{
 		Books:   make(map[int]models.Book),
@@ -26,35 +28,41 @@ func NewLibrary() *Library {
 	}
 }
 
+// AddBook adds a new book to the library.
+// It takes a book object as a parameter and adds it to the library's collection of books.
 func (library *Library) AddBook(book models.Book) {
-	// add new book
 	library.Books[book.ID] = book
 }
 
+// RemoveBook removes a book from the library based on the given bookID.
 func (library *Library) RemoveBook(bookID int) {
-	// remove a book
 	delete(library.Books, bookID)
 }
 
+// BorrowBook borrows a book from the library for a specific member.
+// It takes the book ID and member ID as parameters and returns an error if any issue occurs.
+// If the book is not found, it returns an error with the message "book not found".
+// If the book is already borrowed, it returns an error with the message "book Unavailable".
+// If the member is not found, it returns an error with the message "member not found".
+// If the book is borrowed successfully, it updates the book's status to "borrowed" and adds the book to the member's list of borrowed books.
 func (library *Library) BorrowBook(bookID int, memberID int) error {
-	// borrow a book
 
 	book, book_exists := library.Books[bookID]
 	_, member_exists := library.Members[memberID]
 
 	// check if book exists
 	if !book_exists {
-		return errors.New("Book not found")
+		return errors.New("book not found")
 	}
 
 	// check book status
 	if book.Status == "borrowed" {
-		return errors.New("Book Unavailable!")
+		return errors.New("book Unavailable")
 	}
 
 	// check if member exists
 	if !member_exists {
-		return errors.New("Member not found")
+		return errors.New("member not found")
 	}
 
 	// borrrow successfully
@@ -64,25 +72,32 @@ func (library *Library) BorrowBook(bookID int, memberID int) error {
 	return nil
 }
 
+// ReturnBook returns a book to the library by updating its status and removing it from the member's borrowed books list.
+// It takes the book ID and member ID as parameters and returns an error if any of the following conditions are met:
+// - The book with the given ID does not exist in the library.
+// - The book with the given ID is not currently borrowed.
+// - The member with the given ID does not exist in the library.
+// - The member with the given ID has not borrowed the book with the given ID.
+// If the book is successfully returned, its status is updated to "available" and it is removed from the member's borrowed books list.
+// If any error occurs, an error message is returned.
 func (library *Library) ReturnBook(bookID int, memberID int) error {
-	// return a book
 
 	book, book_exists := library.Books[bookID]
 	_, member_exists := library.Members[memberID]
 
 	// check if book exists
 	if !book_exists {
-		return errors.New("Book not found")
+		return errors.New("book not found")
 	}
 
 	// check book status
 	if book.Status == "available" {
-		return errors.New("Book is Not Borrowed!")
+		return errors.New("book is Not Borrowed")
 	}
 
 	// check if member exists
 	if !member_exists {
-		return errors.New("Member not found")
+		return errors.New("member not found")
 	}
 
 	// return successfully
@@ -96,13 +111,15 @@ func (library *Library) ReturnBook(bookID int, memberID int) error {
 			member.BooksBorrowed = arr
 			return nil
 		}
-		return errors.New("This member hasn't borrowed ")
 	}
-	return nil
+	return errors.New("this member hasn't borrowed ")
 }
 
+// ListAvailableBooks returns a list of available books in the library.
+// It iterates through the library's collection of books and checks the status of each book.
+// If the status is "Available", the book is added to the list of available books.
+// The function then returns the list of available books.
 func (library *Library) ListAvailableBooks() []models.Book {
-	// get all books with status "Available"
 
 	var available_books []models.Book
 
@@ -115,8 +132,9 @@ func (library *Library) ListAvailableBooks() []models.Book {
 	return available_books
 }
 
+// ListBorrowedBooks returns a list of books borrowed by a member.
+// It takes a memberID as input and returns a slice of models.Book.
 func (library *Library) ListBorrowedBooks(memberID int) []models.Book {
-	// get all books borrowed by member with ID 'memberID'
 
 	return library.Members[memberID].BooksBorrowed
 }
