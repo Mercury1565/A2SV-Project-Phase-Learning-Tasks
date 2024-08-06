@@ -68,7 +68,7 @@ Enter Book Title: The Enemy
 Enter Book Author: David Aspinov
 Book Added Successfully
 ```
-## List Available Books
+### List Available Books
 ```
 Welcome!, follow the instructions to continue
 Press 1: Add a new Book
