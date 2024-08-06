@@ -3,21 +3,6 @@
 ## Project Overview
 The Library Management System is a simple console-based application implemented in Go which allows users to manage a collection of books and track borrowed books by library members.
 
-## Folder Structure
-
-library_management/
-├── main.go
-├── controllers/
-│ └── library_controller.go
-├── models/
-│ └── book.go
-│ └── member.go
-├── services/
-│ └── library_service.go
-├── docs/
-│ └── documentation.md
-└── go.mod
-
 ## Structs
 
 ### Book
@@ -68,9 +53,8 @@ To run the project, simply execute the main Go file:
 ## Some Example Usages
 
 ### Add Book
-
+`
 Welcome!, follow the instructions to continue
-
 Press 1: Add a new Book
 Press 2: Remove an existing Book
 Press 3: Borrow a Book
@@ -83,11 +67,10 @@ Enter Book ID: 1
 Enter Book Title: The Enemy
 Enter Book Author: David Aspinov
 Book Added Successfully
-
+`
 ## List Available Books
-
+`
 Welcome!, follow the instructions to continue
-
 Press 1: Add a new Book
 Press 2: Remove an existing Book
 Press 3: Borrow a Book
@@ -98,4 +81,4 @@ Press 0: Abort
 Enter an instruction: 5
 Book ID: 1 | Book Title: The Enemy | Book Author: David Aspinov | Book Status: Available
 Book ID: 2 | Book Title: Feker Eske Mekaber | Book Author: Hadis Alemayehu | Book Status: Available
-
+`
