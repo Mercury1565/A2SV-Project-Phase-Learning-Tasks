@@ -1,9 +1,9 @@
-# Overview of how to test the APIs
+# Overview of How to Use the APIs 
 
-### This is the [API Documentation](https://documenter.getpostman.com/view/37363410/2sA3rzJCHr) for this Simple Task Mangement System.
-
-
-The program is set to run on port 8080
+Use the following command to start the server. The server runs on the localhost:8080
+``` bash
+go run main.go
+```
 
 * GET Requests
   - http://localhost:8080/tasks : Get tasks
@@ -17,4 +17,7 @@ The program is set to run on port 8080
 
 * POST Request
   - http://localhost:8080/tasks: Add new task
+
+
+### This is the [API Documentation](https://documenter.getpostman.com/view/37363410/2sA3rzJCHr) for this Simple Task Mangement System.
 
