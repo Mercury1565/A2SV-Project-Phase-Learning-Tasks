@@ -1,7 +1,6 @@
 package controllers
 
 import (
-	"errors"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -10,27 +9,22 @@ import (
 	"Task_4-Task_Management_REST_API/models"
 )
 
+var taskCollection *data.TaskCollection
+
+func init() {
+	taskCollection = data.NewTaskCollection()
+}
+
 // GetAllTasks returns all tasks.
 func GetAllTasks(c *gin.Context) {
 	c.IndentedJSON(http.StatusOK, data.Tasks)
-}
-
-// GetTaskById retrieves a task from the data.Tasks slice based on the provided ID.
-// It returns a pointer to the task and an error if the task is not found.
-func GetTaskById(id string) (*models.Task, error) {
-	for idx, task := range data.Tasks {
-		if task.ID == id {
-			return &data.Tasks[idx], nil
-		}
-	}
-	return nil, errors.New("task not found")
 }
 
 // GetTask retrieves a task by its ID and returns it as JSON.
 // If the task is not found, it returns a JSON response with a "Task not found" message.
 func GetTask(c *gin.Context) {
 	id := c.Param("id")
-	task, err := GetTaskById(id)
+	task, err := taskCollection.GetTaskById(id)
 
 	if err != nil {
 		c.IndentedJSON(http.StatusNotFound, gin.H{"message": "task not found"})
@@ -45,7 +39,7 @@ func UpdateTask(c *gin.Context) {
 	var updated_task models.Task
 	id := c.Param("id")
 
-	task, err := GetTaskById(id)
+	task, err := taskCollection.GetTaskById(id)
 
 	if err != nil {
 		c.IndentedJSON(http.StatusNotFound, gin.H{"message": "task not found"})
