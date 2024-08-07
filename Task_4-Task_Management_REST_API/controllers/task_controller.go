@@ -17,7 +17,7 @@ func init() {
 
 // GetAllTasks returns all tasks.
 func GetAllTasks(c *gin.Context) {
-	c.IndentedJSON(http.StatusOK, data.Tasks)
+	c.IndentedJSON(http.StatusOK, taskCollection.Tasks)
 }
 
 // GetTask retrieves a task by its ID and returns it as JSON.
@@ -74,9 +74,9 @@ func UpdateTask(c *gin.Context) {
 func DeleteTask(c *gin.Context) {
 	id := c.Param("id")
 
-	for i, task := range data.Tasks {
+	for i, task := range taskCollection.Tasks {
 		if id == task.ID {
-			data.Tasks = append(data.Tasks[:i], data.Tasks[i+1:]...)
+			taskCollection.Tasks = append(taskCollection.Tasks[:i], taskCollection.Tasks[i+1:]...)
 			c.IndentedJSON(http.StatusOK, gin.H{"message": "task deleted successfully"})
 			return
 		}
@@ -96,6 +96,6 @@ func CreateTask(c *gin.Context) {
 		return
 	}
 
-	data.Tasks = append(data.Tasks, newTask)
-	c.IndentedJSON(http.StatusOK, data.Tasks)
+	taskCollection.Tasks = append(taskCollection.Tasks, newTask)
+	c.IndentedJSON(http.StatusOK, taskCollection.Tasks)
 }

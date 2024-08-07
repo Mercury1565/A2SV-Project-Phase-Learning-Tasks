@@ -33,13 +33,10 @@ func NewTaskCollection() *TaskCollection {
 	}
 }
 
-// define in-memory dummy data
-var Tasks = []models.Task{}
-
 // GetTaskById retrieves a task from the data.Tasks slice based on the provided ID.
 // It returns a pointer to the task and an error if the task is not found.
 func (taskCollection *TaskCollection) GetTaskById(id string) (*models.Task, error) {
-	for idx, task := range Tasks {
+	for idx, task := range taskCollection.Tasks {
 		if task.ID == id {
 			return &taskCollection.Tasks[idx], nil
 		}
