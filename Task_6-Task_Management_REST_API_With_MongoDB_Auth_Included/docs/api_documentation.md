@@ -1,4 +1,4 @@
-# Task Mangment System with GO and MongoDB
+# Task Mangment System with GO and MongoDB Including Authentication & Authorizaiton Features
 
 ## Prerequisites
 
