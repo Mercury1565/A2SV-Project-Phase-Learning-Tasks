@@ -1,8 +1,9 @@
-# Task Mangment System with GO
+# Task Mangment System with GO and MongoDB
 
 ## Prerequisites
 
 - [Go](https://golang.org/doc/install)
+- [MongoDB](https://docs.mongodb.com/manual/installation/)
 
 ## Installation
 
@@ -15,7 +16,7 @@
 2. Navigate to the project directory:
 
    ```bash
-   cd Task_4-Task_Management_REST_API
+   cd Task_5-Task_Management_REST_API_With_MongoDB
    ```
 
 3. Download the required Go dependencies:
@@ -29,6 +30,25 @@
    go mod tidy
    ```
 
+## MongoDB Setup
+
+1. Start MongoDB:
+
+   ```bash
+   sudo systemctl start mongod
+   ```
+
+2. Verify that MongoDB has started successfully:
+
+   ```bash
+   sudo systemctl status mongod
+   ```
+
+3. Connect and use MongoDB:
+   ```bash
+   mongo
+   ```
+
 ## Running the Project
 
 1. Run the project:
@@ -37,7 +57,7 @@
    go run main.go
    ```
 
-2. The application will be running at `http://localhost:8080`.
+2. The application will be running at `http://localhost:8080`. You can change the application port number in the `main.go` file
 
 ## API Endpoints
 
@@ -57,4 +77,4 @@
 - POST Request
   - http://localhost:8080/tasks: Add new task
 
-### This is the [API Documentation](https://documenter.getpostman.com/view/37363410/2sA3rzJCHr) for this Simple Task Mangement System.
+### This is the [API Documentation](https://documenter.getpostman.com/view/37363410/2sA3s1nrqe) for this Simple Task Mangement System integrated with MongoDB
