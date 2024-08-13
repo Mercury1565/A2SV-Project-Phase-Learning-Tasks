@@ -21,7 +21,7 @@ type Library struct {
 
 // NewLibrary creates a new instance of the Library struct.
 // It initializes the Books and Members maps and returns a pointer to the Library.
-func NewLibrary() *Library {
+func NewLibrary() LibraryManager {
 	return &Library{
 		Books:   make(map[int]models.Book),
 		Members: make(map[int]models.Member),
