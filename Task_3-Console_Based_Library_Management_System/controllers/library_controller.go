@@ -10,7 +10,7 @@ import (
 	"strings"
 )
 
-var library *services.Library
+var library services.LibraryManager
 
 func init() {
 	// 'init' is automatically called when the package is imported
