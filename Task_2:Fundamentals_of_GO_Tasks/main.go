@@ -9,6 +9,9 @@ func freqCount(s string) map[string]int {
 	freq := make(map[string]int)
 
 	for _, word := range splitted {
+		if word == " "{
+			continue
+		}
 		word = strings.ToLower(word)
 		freq[word] += 1
 	}
