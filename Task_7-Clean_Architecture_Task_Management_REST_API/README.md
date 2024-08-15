@@ -49,6 +49,43 @@
    ```bash
    mongo
    ```
+## Folder Structure
+
+```
+Task_manager/
+├── bootstrap/
+│   ├── app.go
+│   ├── database.go
+│   └── env.go
+├── delivery/
+│   ├── controllers/
+│   │   ├── user_controller.go
+│   │   └── tasks_controller.go
+│   ├── routers/
+│   │   ├── adminRoutes.go
+│   │   ├── protectedRoutes.go
+│   │   ├── publicRoutes.go
+│   │   └── route.go
+│   ├── .env
+│   └── main.go
+├── domain/
+│   ├── jwtCustom.go
+│   ├── task.go
+│   └── user.go
+├── infrastructure/
+│   ├── auth_middleware.go
+│   ├── jwt_service.go
+│   └── password_service.go
+├── repository/
+│   ├── taskRepo.go
+│   └── userRepo.go
+├── usecases/
+│   ├── user_usecases.go
+│   └── task_usecases.go
+├── README.mod
+├── go.mod
+└── go.sum
+```
 
 ## Running the Project
 
