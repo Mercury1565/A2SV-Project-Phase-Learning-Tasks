@@ -59,6 +59,7 @@ Task_manager/
 │   ├── app.go
 │   ├── database.go
 │   └── env.go
+|
 ├── delivery/
 │   ├── controllers/
 │   │   ├── user_controller_test.go
@@ -71,24 +72,32 @@ Task_manager/
 │   │   ├── publicRoutes.go
 │   │   └── route.go
 │   └── main.go
+|
 ├── domain/
 │   ├── jwtCustom.go
 │   ├── task.go
 │   └── user.go
+|
 ├── infrastructure/
-│   ├── auth_middleware.go
+│   ├── admin_middleware_test.go
+│   ├── admin_middleware.go
+│   ├── authenticate_middleware_test.go
+│   ├── authenticate_middleware.go
 │   ├── jwt_service.go
 │   └── password_service.go
+|
 ├── repository/
 │   ├── taskRepo_test.go
 │   ├── taskRepo.go
 │   └── userRepo_test.go
 │   └── userRepo.go
+|
 ├── usecases/
 │   ├── user_usecases_test.go
 │   ├── user_usecases.go
 │   └── task_usecases_test.go
 │   └── task_usecases.go
+|
 ├── README.md
 ├── go.mod
 ├── go.sum
@@ -98,19 +107,25 @@ Task_manager/
 
 ## Running the Project
 
-1. Navigate to the delivery directory:
+1. Copy the `.env.example` file to a `.env` file:
+
+   ```bash
+   cp .env.example .env
+   ```
+
+2. Replace the placeholders in the `.env` file with your actual values.
+
+3. Navigate to the delivery directory:
 
    ```bash
    cd delivery
    ```
 
-2. Run the project:
+4. Run the project:
 
    ```bash
    go run main.go
    ```
-
-3. The application will be running at `http://localhost:8080`. You can change the application port number as well us other environment variables in the `.env` file located in the root directory
 
 ## API Endpoints
 
@@ -160,13 +175,21 @@ Here's how you can run the tests
   ```
 
 - Run specific tests for use cases:
+
   ```bash
   go test ./usecases -v
   ```
+
 - Run specific tests for controllers:
 
   ```bash
   go test ./delivery/controller -v
+  ```
+
+- Run specific tests for middlewares:
+
+  ```bash
+  go test ./infrastructure -v
   ```
 
 ## Continuous Integration
