@@ -1,5 +1,6 @@
-# Task Mangment System with GO | MongoDB | Authentication & Authorizaiton Features Included
-## This repository shows how clean architecture is implemented in software system using a simple Task Mangement App
+# Unit Testing the Task Managment System with GO | MongoDB | Authentication & Authorizaiton Features Included
+
+## This repository shows how unit testing is performed on GO using the testify package. It is demonstrated using the simple Task Mangement App from Task-7 which was implemented with clean architecture.
 
 ## Prerequisites
 
@@ -17,7 +18,7 @@
 2. Navigate to the project directory:
 
    ```bash
-   cd Task_7-Clean_Architecture_Task_Management_REST_API
+   cd Task_8-Testing_Task_Management_REST_API
    ```
 
 3. Download the required Go dependencies:
@@ -50,6 +51,51 @@
    mongo
    ```
 
+## Folder Structure
+
+```
+Task_manager/
+├── bootstrap/
+│   ├── app.go
+│   ├── database.go
+│   └── env.go
+├── delivery/
+│   ├── controllers/
+│   │   ├── user_controller_test.go
+│   │   ├── user_controller.go
+│   │   └── tasks_controller_test.go
+│   │   └── tasks_controller.go
+│   ├── routers/
+│   │   ├── adminRoutes.go
+│   │   ├── protectedRoutes.go
+│   │   ├── publicRoutes.go
+│   │   └── route.go
+│   └── main.go
+├── domain/
+│   ├── jwtCustom.go
+│   ├── task.go
+│   └── user.go
+├── infrastructure/
+│   ├── auth_middleware.go
+│   ├── jwt_service.go
+│   └── password_service.go
+├── repository/
+│   ├── taskRepo_test.go
+│   ├── taskRepo.go
+│   └── userRepo_test.go
+│   └── userRepo.go
+├── usecases/
+│   ├── user_usecases_test.go
+│   ├── user_usecases.go
+│   └── task_usecases_test.go
+│   └── task_usecases.go
+├── README.md
+├── go.mod
+├── go.sum
+└── .env
+
+```
+
 ## Running the Project
 
 1. Navigate to the delivery directory:
@@ -64,7 +110,7 @@
    go run main.go
    ```
 
-3. The application will be running at `http://localhost:8080`. You can change the application port number as well us other environment variables in the `.env` file located in teh `/delivery` directory
+3. The application will be running at `http://localhost:8080`. You can change the application port number as well us other environment variables in the `.env` file located in the root directory
 
 ## API Endpoints
 
@@ -72,9 +118,9 @@
 
 - POST Requests
 
-  - http://localhost:8080/register: register new user
-  - http://localhost:8080/login : authenticate and signin users
-  - http://localhost:8080/promote/userID : promote user role to 'ADMIN', only allowed for users with 'ADMIN'
+  - http://localhost:8080/register: Register new user
+  - http://localhost:8080/login : Authenticate and Signin Users
+  - http://localhost:8080/promote/userID : Promote role of users to admin, only allowed for users with 'ADMIN' role
 
 ### APIs Related to task managment
 
@@ -85,14 +131,48 @@
 
 - PUT Request
 
-  - http://localhost:8080/tasks/taskID: Update the fields of task with taskId ID, only allowed for users with 'ADMIN'
+  - http://localhost:8080/tasks/taskID: Update the fields of task with taskId ID, only allowed for users with 'ADMIN' role
 
 - DELETE Request
 
-  - http://localhost:8080/tasks/taskID: Delete the task with taskId ID, only allowed for users with 'ADMIN'
+  - http://localhost:8080/tasks/taskID: Delete the task with taskId ID, only allowed for users with 'ADMIN' role
 
 - POST Request
 
-  - http://localhost:8080/tasks: Add new task, only allowed for users with 'ADMIN'
+  - http://localhost:8080/tasks: Add new task, only allowed for users with 'ADMIN' role
+
+## Testing
+
+Testing has been integrated into the project to ensure the reliability and correctness of the implemented functionalities.
+
+Here's you can run the tests
+
+- Run all tests:
+
+  ```bash
+  go test -v ./...
+  ```
+
+- Run specific tests for the repository:
+
+  ```bash
+  go test ./repository -v
+  ```
+
+- Run specific tests for use cases:
+  ```bash
+  go test ./usecases -v
+  ```
+- Run specific tests for controllers:
+
+  ```bash
+  go test ./delivery/controller -v
+  ```
+
+## Continuous Integration
+
+A CI/CD pipeline is set up using GitHub Actions to automatically run tests on each push or pull request to the main branch. This ensures that the code is always in a healthy state.
+
+Beware that the test for the repository layer is not part of the CI/CD pipeline since test databases are used to implement the testing for the repository
 
 ### This is the [API Documentation](https://documenter.getpostman.com/view/37363410/2sA3s3HB59) for this Simple Task Mangement System integrated with MongoDB with authentication/authorization features included
