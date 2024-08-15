@@ -9,7 +9,7 @@ type Application struct {
 
 func App() Application {
 	app := &Application{}
-	app.Env = NewEnv(1)
+	app.Env = NewEnv(2)
 	app.Mongo = NewMongoDBClient(app.Env)
 	return *app
 }

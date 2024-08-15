@@ -9,6 +9,33 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+func GetUserRoleFromContext(context *gin.Context) (string, error) {
+	// retrieve claims from the context
+	claimsValue, exists := context.Get("claims")
+
+	if !exists {
+		return "", errors.New("no claims found")
+	}
+
+	// retrieve jwt.MapClaims from the claimsValue
+	claims, ok := claimsValue.(jwt.MapClaims)
+	if !ok {
+		return "", errors.New("claims are not valid")
+	}
+
+	// retrieve the user_role from the claims
+	user_role, ok := claims["role"].(string)
+	if !ok {
+		return "", errors.New("no user_role found in claims")
+	}
+
+	return user_role, nil
+}
+
+// JWTAuthMiddleware is a middleware function that performs JWT authentication.
+// It checks the Authorization header for a valid JWT token and sets the claims to the context.
+// If the token is invalid or missing, it returns an error response.
+// The secret parameter is used to validate the token's signature.
 func JWTAuthMiddleware(secret string) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		authHeader := c.Request.Header.Get("Authorization")
@@ -57,6 +84,9 @@ func JWTAuthMiddleware(secret string) gin.HandlerFunc {
 	}
 }
 
+// AuthenticateAdmin is a middleware function that checks if the user is an admin.
+// It retrieves the user role from the context and verifies if it is "ADMIN".
+// If the user is not an admin, it returns an unauthorized error.
 func AuthenticateAdmin() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		// get user role from the context
@@ -74,27 +104,4 @@ func AuthenticateAdmin() gin.HandlerFunc {
 			return
 		}
 	}
-}
-
-func GetUserRoleFromContext(context *gin.Context) (string, error) {
-	// retrieve claims from the context
-	claimsValue, exists := context.Get("claims")
-
-	if !exists {
-		return "", errors.New("no claims found")
-	}
-
-	// retrieve jwt.MapClaims from the claimsValue
-	claims, ok := claimsValue.(jwt.MapClaims)
-	if !ok {
-		return "", errors.New("claims are not valid")
-	}
-
-	// retrieve the user_role from the claims
-	user_role, ok := claims["role"].(string)
-	if !ok {
-		return "", errors.New("no user_role found in claims")
-	}
-
-	return user_role, nil
 }

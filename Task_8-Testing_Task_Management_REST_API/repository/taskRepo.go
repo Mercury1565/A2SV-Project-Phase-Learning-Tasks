@@ -24,6 +24,9 @@ func NewTaskRepo(database mongo.Database, collection string) domain.TaskReposito
 	}
 }
 
+// Create inserts a new task into the database.
+// It takes a context and a task object as parameters.
+// It returns an error if the insertion fails.
 func (taskRepo *taskRepo) Create(c context.Context, task *domain.Task) error {
 	collection := taskRepo.database.Collection(taskRepo.collection)
 
@@ -32,6 +35,8 @@ func (taskRepo *taskRepo) Create(c context.Context, task *domain.Task) error {
 	return err
 }
 
+// GetTasks retrieves all tasks from the database.
+// It returns a slice of domain.Task and an error, if any.
 func (taskRepo *taskRepo) GetTasks(c context.Context) ([]domain.Task, error) {
 	collection := taskRepo.database.Collection(taskRepo.collection)
 
@@ -49,6 +54,8 @@ func (taskRepo *taskRepo) GetTasks(c context.Context) ([]domain.Task, error) {
 	return tasks, err
 }
 
+// GetTaskByID retrieves a task from the database based on the given task ID.
+// It returns the retrieved task and an error, if any.
 func (taskRepo *taskRepo) GetTaskByID(c context.Context, taskID string) (domain.Task, error) {
 	collection := taskRepo.database.Collection(taskRepo.collection)
 
@@ -66,6 +73,9 @@ func (taskRepo *taskRepo) GetTaskByID(c context.Context, taskID string) (domain.
 	return task, err
 }
 
+// UpdateTask updates a task with the specified taskID in the repository.
+// It takes a context, taskID string, and updated_task *domain.Task as parameters.
+// The function returns an error if any occurred during the update process.
 func (taskRepo *taskRepo) UpdateTask(c context.Context, taskID string, updated_task *domain.Task) error {
 	collection := taskRepo.database.Collection(taskRepo.collection)
 
@@ -115,6 +125,9 @@ func (taskRepo *taskRepo) UpdateTask(c context.Context, taskID string, updated_t
 	return nil
 }
 
+// DeleteTask deletes a task from the repository based on the given task ID.
+// It takes a context `c` and a task ID `taskID` as parameters.
+// It returns an error if the task ID is invalid or if the task with the given ID is not found.
 func (taskRepo *taskRepo) DeleteTask(c context.Context, taskID string) error {
 	collection := taskRepo.database.Collection(taskRepo.collection)
 
