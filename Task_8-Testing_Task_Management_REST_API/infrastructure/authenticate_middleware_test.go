@@ -1,7 +1,6 @@
 package infrastructure
 
 import (
-	"Task_8-Testing_Task_Management_REST_API/bootstrap"
 	"Task_8-Testing_Task_Management_REST_API/domain"
 	"fmt"
 	"net/http"
@@ -23,7 +22,7 @@ func (suite *AuthMiddlewareSuite) SetupTest() {
 	gin.SetMode(gin.TestMode)
 
 	suite.router = gin.Default()
-	suite.secret = bootstrap.NewEnv(2).AccessTokenSecret
+	suite.secret = "this is a test secret"
 	suite.mockUser = &domain.User{
 		Email:    "test@example.com",
 		Password: "password123",
@@ -38,7 +37,7 @@ func (suite *AuthMiddlewareSuite) TestJWTAuthMiddleware_Success() {
 		c.Status(http.StatusOK)
 	})
 
-	accessToken, err := CreateAccessToken(suite.mockUser, suite.secret, bootstrap.NewEnv(2).AccessTokenExpiryHour)
+	accessToken, err := CreateAccessToken(suite.mockUser, suite.secret, 24)
 	if err != nil {
 		suite.Fail("Failed to generate token", err)
 	}

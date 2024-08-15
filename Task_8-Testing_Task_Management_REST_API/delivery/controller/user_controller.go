@@ -39,8 +39,6 @@ func (controller *UserController) ValidateUserInfo(c context.Context, user *doma
 		return err
 	}
 
-	fmt.Println(user.Role, usersExist)
-
 	if user.Role == "ADMIN" && usersExist {
 		fmt.Println(usersExist)
 		return errors.New("admin can only be registered if no users exist")

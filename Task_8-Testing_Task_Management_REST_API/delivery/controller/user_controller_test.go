@@ -12,6 +12,7 @@ import (
 	"testing"
 
 	"github.com/gin-gonic/gin"
+	"github.com/joho/godotenv"
 	"github.com/stretchr/testify/mock"
 	"github.com/stretchr/testify/suite"
 	"go.mongodb.org/mongo-driver/bson/primitive"
@@ -25,10 +26,15 @@ type UserControllerTestSuite struct {
 }
 
 func (suite *UserControllerTestSuite) SetupSuite() {
+	err := godotenv.Load(".env.test")
+	if err != nil {
+		suite.Fail("Failed to load .env.test file", err)
+	}
+
 	suite.mockUserUsecase = new(mocks.UserUsecase)
 	suite.controller = &UserController{
 		UserUsecase: suite.mockUserUsecase,
-		Env:         bootstrap.NewEnv(3),
+		Env:         bootstrap.NewEnv(),
 	}
 	suite.router = gin.Default()
 
