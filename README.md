@@ -1,6 +1,6 @@
 # A2SV Project Phase Backend Development with GO-Lang Learning Tasks
 
-## This repository contains a series of tasks assigned to me duing the learning track for A2SV's project phase to enhance my learning and practical understanding of various programming concepts and frameworks on Go and related technologies. Each folder within this repository represents a distinct task with specific objectives and learning outcomes.
+This repository contains a series of tasks assigned to me duing the learning track for A2SV's project phase to enhance my learning and practical understanding of various programming concepts and frameworks on Go and related technologies. Each folder within this repository represents a distinct task with specific objectives and learning outcomes.
 August, 2024
 
 ## Repository Structure
@@ -47,8 +47,7 @@ August, 2024
   ```bash
     cd Task_1:Student_Grade_Calculator
   ```
-3. Follow the Instructions in the README of Each Task:
-   Each task directory contains a README file with specific instructions on how to run the project, dependencies required, and other relevant details.
+3. Follow the Instructions in the README of Each Task
 
 ## Prerequisites
   - Go
