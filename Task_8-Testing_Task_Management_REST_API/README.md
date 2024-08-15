@@ -173,6 +173,6 @@ Here's how you can run the tests
 
 A CI/CD pipeline is set up using GitHub Actions to automatically run tests on each push or pull request to the main branch. This ensures that the code is always in a healthy state.
 
-Beware that the test for the repository layer is not part of the CI/CD pipeline since test databases are used to implement the testing for the repository
+Beware that the test for the repository layer is not part of the CI/CD pipeline since a test database is used to implement the testing for the repository layer
 
 ### This is the [API Documentation](https://documenter.getpostman.com/view/37363410/2sA3s3HB59) for this Simple Task Mangement System integrated with MongoDB with authentication/authorization features included
