@@ -1,9 +1,9 @@
 # A2SV Project Phase Backend Development with GO-Lang Learning Tasks
+### August, 2024
 
 This repository contains a series of tasks assigned to me duing the learning track for A2SV's project phase to enhance my learning and practical understanding of various programming concepts and frameworks on Go and related technologies. Each folder within this repository represents a distinct task with specific objectives and learning outcomes.
-August, 2024
 
-## Repository Structure
+## Tasks
 
 * Task_1: Student Grade Calculator
   - **Description**: This task involves creating a simple application to calculate student grades. The goal is to get accustomed to GOLang and understand how to perform basic functions including input/output operations, conditional statements, and arithmetic calculations.
