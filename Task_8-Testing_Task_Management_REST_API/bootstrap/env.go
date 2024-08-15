@@ -19,7 +19,7 @@ type Env struct {
 }
 
 func NewEnv() *Env {
-	err := godotenv.Load()
+	err := godotenv.Load("../.env.test")
 	if err != nil {
 		log.Println("Failed to load .env file, falling back to system environment variables")
 	}
@@ -27,9 +27,14 @@ func NewEnv() *Env {
 	viper.AutomaticEnv() // read from environment variables
 
 	env := &Env{
-		ServerAddress: viper.GetString("SERVER_ADDRESS"),
-		AppEnv:        viper.GetString("APP_ENV"),
-		// add other fields as needed
+		ServerAddress:         viper.GetString("SERVER_ADDRESS"),
+		AppEnv:                viper.GetString("APP_ENV"),
+		ContextTimeout:        viper.GetInt("CONTEXT_TIMEOUT"),
+		DBHost:                viper.GetString("DB_HOST"),
+		DBPort:                viper.GetString("DB_PORT"),
+		DBName:                viper.GetString("DB_NAME"),
+		AccessTokenExpiryHour: viper.GetInt("ACCESS_TOKEN_EXPIRY_HOUR"),
+		AccessTokenSecret:     viper.GetString("ACCESS_TOKEN_SECRET"),
 	}
 
 	if env.ServerAddress == "" {

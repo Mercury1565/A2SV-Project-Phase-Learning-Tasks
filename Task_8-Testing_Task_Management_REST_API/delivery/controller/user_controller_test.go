@@ -26,7 +26,7 @@ type UserControllerTestSuite struct {
 }
 
 func (suite *UserControllerTestSuite) SetupSuite() {
-	err := godotenv.Load(".env.test")
+	err := godotenv.Load("../../.env.test")
 	if err != nil {
 		suite.Fail("Failed to load .env.test file", err)
 	}
