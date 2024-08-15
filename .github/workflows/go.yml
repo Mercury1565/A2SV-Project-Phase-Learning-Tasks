@@ -36,5 +36,9 @@ jobs:
     - name: Controller Test
       run: go test ./delivery/controller -v -coverprofile=coverage_controller.out -covermode=atomic
       working-directory: Task_8-Testing_Task_Management_REST_API
+
+    - name: Middelware Test
+      run: go test ./infrastructure -v -coverprofile=coverage_middelware.out -covermode=atomic
+      working-directory: Task_8-Testing_Task_Management_REST_API
       
 
