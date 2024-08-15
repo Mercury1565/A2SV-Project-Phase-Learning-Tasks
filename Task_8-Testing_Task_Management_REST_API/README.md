@@ -145,7 +145,7 @@ Task_manager/
 
 Testing has been integrated into the project to ensure the reliability and correctness of the implemented functionalities.
 
-Here's you can run the tests
+Here's how you can run the tests
 
 - Run all tests:
 
